@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zion's Calculator</title>
+    </head>
+    <body>
+        <input id="answer-input" type="text" />
+        <br />
+        <button onclick="setNumber(3)">3</button>
+        
+        <button onclick="setNumber(2)">2</button>
+        <button onclick="setNumber(1)">1</button>
+    </body> 
+    <script>
+        function setNumber(value) {
+            var answerInput = document.getElementById('answer-input');
+            answerInput.value = value;
+        }
+    </script>
+</html>
