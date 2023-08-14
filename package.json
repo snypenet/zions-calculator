@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server src"
+    "start": "concurrently \"npm run serve\" \"npm run open\"",
+    "open": "opener http://localhost:8080",
+    "serve": "http-server src"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.0",
+    "delay-cli": "^2.0.0",
     "http-server": "^14.1.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "opener": "^1.5.2"
   }
 }

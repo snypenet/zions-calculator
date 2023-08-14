@@ -6,15 +6,28 @@
     <body>
         <input id="answer-input" type="text" />
         <br />
+    <button onclick="">+</button>
         <button onclick="setNumber(3)">3</button>
-        
         <button onclick="setNumber(2)">2</button>
         <button onclick="setNumber(1)">1</button>
     </body> 
     <script>
+        var leftNumber = undefined; 
+        var rightNumber = undefined;
+
         function setNumber(value) {
+            if (leftNumber === undefined) {
+                leftNumber = value;
+            } else if (rightNumber === undefined) {
+                rightNumber = value;
+            }
+
+            console.log('leftNumber', leftNumber);
+            console.log('rightNumber', rightNumber);
+
             var answerInput = document.getElementById('answer-input');
             answerInput.value = value;
         }
     </script>
 </html>
+
