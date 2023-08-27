@@ -1,33 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Zion's Calculator</title>
-    </head>
-    <body>
-        <input id="answer-input" type="text" />
-        <br />
-    <button onclick="">+</button>
-        <button onclick="setNumber(3)">3</button>
-        <button onclick="setNumber(2)">2</button>
-        <button onclick="setNumber(1)">1</button>
-    </body> 
-    <script>
-        var leftNumber = undefined; 
-        var rightNumber = undefined;
 
-        function setNumber(value) {
-            if (leftNumber === undefined) {
-                leftNumber = value;
-            } else if (rightNumber === undefined) {
-                rightNumber = value;
-            }
+<head>
+    <title>Zion's Calculator</title>
+</head>
 
-            console.log('leftNumber', leftNumber);
-            console.log('rightNumber', rightNumber);
+<body>
+    <input id="answer-input" type="text" disabled />
+    <br />
+    <button onclick="clearAll()">clear</button>
+    <button onclick="calculatAnswer()">=</button>
+    <button onclick="setSymbol('+')">+</button>
+    <button onclick="setNumber('3')">3</button>
+    <button onclick="setNumber('2')">2</button>
+    <button onclick="setNumber('1')">1</button>
+    <button onclick="setNumber('4')">4</button>
+    <button onclick="setNumber('5')">5</button>
+    <button onclick="setNumber('6')">6</button>
+    <button onclick="setNumber('7')">7</button>
+    <button onclick="setNumber('8')">8</button>
+    <button onclick="setNumber('9')">9</button>
+    <button onclick="setNumber('0')">0</button>
+    <button onclick="setSymbol('-')">-</button>
+    <button onclick="setSymbol('x')">x</button>
+    <button onclick="setSymbol('÷')">÷</button>
 
-            var answerInput = document.getElementById('answer-input');
-            answerInput.value = value;
+</body>
+<script>
+    var answer = '';
+    var leftNumber = '';
+    var rightNumber = '';
+    var symbol = null;
+    function calculatAnswer() {
+        if (symbol === '+') {
+            answer = Number(leftNumber) + Number(rightNumber);
+            console.log(answer);
+            setInput();
+        } else if (symbol === '-') {
+            answer = Number(leftNumber) - Number(rightNumber);
+            setInput();
+        } else if (symbol === 'x') {
+            answer = Number(leftNumber) * Number(rightNumber);
+            setInput();
+        }else if (symbol === '÷') {
+            answer = Number(leftNumber) / Number(rightNumber);
+            setInput();
         }
-    </script>
-</html>
+    }
+    function clearAll() {
+        leftNumber = '';
+        rightNumber = '';
+        symbol = null;
+        answer = '';
+        setInput();
+    }
 
+    function setSymbol(value) {
+        if (leftNumber !== '') {
+            symbol = value;
+            console.log(symbol);
+        }
+        setInput();
+    }
+    function setNumber(value) {
+        if (answer !== '') {
+            clearAll();
+        }
+
+
+
+        if (symbol === null) {
+            leftNumber += value;
+        } else if (rightNumber !== '' || symbol !== '÷' || value !== '0'){
+            
+            rightNumber += value;
+        }
+
+        console.log('leftNumber', leftNumber);
+        console.log('rightNumber', rightNumber);
+        setInput();
+    }
+    function setInput() {
+        var answerInput = document.getElementById('answer-input');
+        var inputValue = leftNumber;
+        if (symbol === null) {
+            inputValue += '';
+        } else {
+            inputValue += symbol;
+        }
+        inputValue += rightNumber;
+        if (answer !== '') {
+            inputValue += '= ' + answer;
+        }
+
+        answerInput.value = inputValue;
+
+    }
+
+
+</script>
+
+</html>
